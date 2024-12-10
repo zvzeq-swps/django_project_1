@@ -11,14 +11,12 @@ SHIRT_SIZES = (
         ('L', 'Large'),
     )
 
-
 class Team(models.Model):
     name = models.CharField(max_length=60)
     country = models.CharField(max_length=2)
 
     def __str__(self):
         return f"{self.name}"
-
 
 class Person(models.Model):
 
@@ -31,7 +29,6 @@ class Person(models.Model):
     def __str__(self):
         return self.name
 
-
 class Osoba(models.Model):
     PLEC_CHOICES = (
         ("K", "Kobieta"),
@@ -42,16 +39,14 @@ class Osoba(models.Model):
     imie = models.CharField(max_length=40, blank=False, null=False)
     nazwisko = models.CharField(max_length=60, blank=False, null=False)
     plec = models.CharField(max_length=1, choices=PLEC_CHOICES, default=PLEC_CHOICES[2][0])
-    stanowisko = models.ForeignKey("Stanowisko", on_delete = models.CASCADE)
+    stanowisko = models.ForeignKey('Stanowisko', on_delete = models.CASCADE)
 
     def __str__(self):
-        return f"{self.imie} {self.nazwisko}"
-
+        return f'{self.imie} {self.nazwisko}'
 
 class Stanowisko(models.Model):
     nazwa = models.CharField(max_length=80, blank=False, null=False)
     opis = models.TextField(blank=False, null=False)
 
     def __str__(self):
-        return self.name
-    
+        return self.nazwa
